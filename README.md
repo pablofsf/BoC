@@ -1,6 +1,6 @@
 # cnntrainingdata
 # Database of images from the Swedish sign language.
 
-To add new images, just add them to the folder with the corresponding name (if it doesn't exist, create it).
+New images added to this repository should have a clean background, and size of either 224x224 pixels or 227x227 pixels. If you are not able to do so, or it takes too much time from you, just add them to a folder called "Images to classify" and we will take care of it.
 
-It would help if the images were labeled with their letter and the next free number, e.g: if the images R_1 and R_2 already exist, the images should be labeled R_3
+If you can do that, to add new images, just add them to the folder with the corresponding format: LETTER_NUMBER.EXTENSION. Matlab accepts jpg, jpeg and png extensions.
