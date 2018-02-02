@@ -4,12 +4,11 @@ function accuracy = trainSqueezenet(percentageTraining,ValidationFrequency,Weigh
 %Import images
 ImgSize=227;
 images = imageDatastore('TrainingData','IncludeSubfolders',true,'LabelSource','foldernames');
-images.ReadFcn = @(loc)imresize(imread(loc),[227 227]);
+images.ReadFcn = @(loc)imresize(imread(loc),[ImgSize ImgSize]);
 [trainingImages,validationImages] = splitEachLabel(images,percentageTraining,'randomized');
 
-%Choose here the net. Right now this script is only ready to work with Squeezenet
+%Import squeezeNet
 importedNet = importSqueezenet();
-
 
 squeezenetGraph = layerGraph(importedNet);
 squeezenetGraph = removeLayers(squeezenetGraph, {'conv10','relu_conv10_relu','global_average_pooling2d_1','loss_softmax','ClassificationLayer_loss'});
@@ -44,7 +43,13 @@ options = trainingOptions('sgdm',...
     'Shuffle','every-epoch',...
     'Plots','training-progress');
 
+startTime = clock;
 TrainedNet = trainNetwork(trainingImages,squeezenetGraph,options);
+
+%Save and close the training plot
+trainingPlot = findall(0,'type','figure');
+print(trainingPlot,mat2str(startTime(1:5)),'-dpng');
+close(trainingPlot);
 
 predictedLabels = classify(TrainedNet,validationImages);
 accuracy = mean(predictedLabels == validationImages.Labels)
