@@ -14,10 +14,13 @@ trainSqueezenet(percentageTraining,ValidationFrequency,WeightLearnRateFactor,Bia
     | |		    Faster behaviour but stops improving once loss reaches 2 in validation
     | |		    trainSqueezenet(0.85,6,20,20,30,8,1.156e-4,0.8,2)
     | |
-    | +-+180201-2122: Modified batch size to 50. First time loss go clearly below 2 and accuracy over 50%.
+    | +-+180201-2122,180202-1737,180202-1846,180202-1956: trainSqueezenet(0.85,6,20,20,50,8,1.156e-4,0.8,2)
+	| |           Modified batch size to 50. First time loss go clearly below 2 and accuracy over 50%.
     | | 	      However, still gets stucked.
-    | |		      trainSqueezenet(0.85,6,20,20,50,8,1.156e-4,0.8,2)
-    | |
+    | |		      Tried several different to understand differences between having different sets.
+    | |           Concluded that the set has some influence. Will modify the script and export the images
+	| | 
+	| | 
     | +-+Modify batch size:45
     | |
     | |
