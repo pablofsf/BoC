@@ -5,7 +5,7 @@ function accuracy = trainSqueezenet(percentageTraining,ValidationFrequency,Weigh
 ImgSize=227;
 images = imageDatastore('TrainingData','IncludeSubfolders',true,'LabelSource','foldernames');
 images.ReadFcn = @(loc)imresize(imread(loc),[ImgSize ImgSize]);
-[trainingImages,validationImages] = splitEachLabel(images,percentageTraining,'randomized');
+[trainingImages,validationImages] = splitEachLabel(images,percentageTraining);
 
 %Import squeezeNet
 importedNet = importSqueezenet();
