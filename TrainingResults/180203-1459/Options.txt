@@ -1,0 +1,2 @@
+180203-1459: Change momnetum factor to 0.9. 
+             Increase number of epochs to 16.	
