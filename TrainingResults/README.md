@@ -48,6 +48,11 @@ trainSqueezenet(percentageTraining,ValidationFrequency,WeightLearnRateFactor,Bia
          |      	     Validation Final Accuracy = 67.3% (peak 69.2%); Mini-batch (training) Final Accuracy = 100.0%
          |      
          +--+180203-1726: Change momnetum factor to 0.95 / Epochs = 14
-                          trainSqueezenet(0.85,6,20,20,30,16,1e-4,0.8,2)  (--> momentum not added here in the arguments)
-                          Validation loss = 1.69 (minimum 1.62); Mini-batch loss = 0.09
-                          Validation Final Accuracy = 59.6% (peak 65.4%); Mini-batch (training) Final Accuracy = 96.7% (peak 100%)
+            |              trainSqueezenet(0.85,6,20,20,30,16,1e-4,0.8,2)  (--> momentum not added here in the arguments)
+            |              Validation loss = 1.69 (minimum 1.62); Mini-batch loss = 0.09
+            |              Validation Final Accuracy = 59.6% (peak 65.4%); Mini-batch (training) Final Accuracy = 96.7% (peak 100%)
+            |
+            +--+180203-1926: Change momnetum factor to 0.85 / Epochs = 14
+                             trainSqueezenet(0.85,6,20,20,30,16,1e-4,0.8,2)  (--> momentum not added here in the arguments) 
+                             Validation loss = 1.05 (minimum 1.05); Mini-batch loss = 0.11 (minimum 0.09)
+                             Validation Final Accuracy = 73.1% (peak 73.1%); Mini-batch (training) Final Accuracy = 96.7% (peak 100%)
