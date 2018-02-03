@@ -1,1 +1,2 @@
-
+Add momentum factor = 0.5
+trainSqueezenet(0.85,6,20,20,30,8,1e-4,0.8,2)  (--> momentum not added here in the arguments)
