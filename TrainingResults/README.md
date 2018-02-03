@@ -15,12 +15,12 @@ trainSqueezenet(percentageTraining,ValidationFrequency,WeightLearnRateFactor,Bia
     | |		    trainSqueezenet(0.85,6,20,20,30,8,1.156e-4,0.8,2)
     | |
     | +-+180201-2122,180202-1737,180202-1846,180202-1956: trainSqueezenet(0.85,6,20,20,50,8,1.156e-4,0.8,2)
-	| |           Modified batch size to 50. First time loss go clearly below 2 and accuracy over 50%.
+    | |           Modified batch size to 50. First time loss go clearly below 2 and accuracy over 50%.
     | | 	      However, still gets stucked.
     | |		      Tried several different to understand differences between having different sets.
     | |           Concluded that the set has some influence. Will modify the script and export the images
-	| | 
-	| | 
+    | | 
+    | | 
     | +-+Modify batch size:45
     | |
     | |
@@ -30,4 +30,12 @@ trainSqueezenet(percentageTraining,ValidationFrequency,WeightLearnRateFactor,Bia
     |
     |
     +-+Propose: Modify weightLearnRateFactor
-    
+    |
+    |
+    |
+    +-+180203-1330: Add momentum factor = 0.5
+                    trainSqueezenet(0.85,6,20,20,30,8,1e-4,0.8,2)  (--> momentum not added here in the arguments)
+		    Training finished because process reached final iteration (8). 
+		    Validation loss got below 2 (1.88)
+		    Mini-batch (training) Final Accuracy = 73.3% (peak 90.0%)
+		    Validation Final Accuracy = 44.2% (peak 46.1%)
