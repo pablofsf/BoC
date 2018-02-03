@@ -34,8 +34,16 @@ trainSqueezenet(percentageTraining,ValidationFrequency,WeightLearnRateFactor,Bia
     |
     |
     +-+180203-1330: Add momentum factor = 0.5
-                    trainSqueezenet(0.85,6,20,20,30,8,1e-4,0.8,2)  (--> momentum not added here in the arguments)
-		    Training finished because process reached final iteration (8). 
-		    Validation loss got below 2 (1.88)
-		    Mini-batch (training) Final Accuracy = 73.3% (peak 90.0%)
-		    Validation Final Accuracy = 44.2% (peak 46.1%)
+      |             trainSqueezenet(0.85,6,20,20,30,8,1e-4,0.8,2)  (--> momentum not added here in the arguments)
+      | 	    Training finished because process reached final iteration (8). 
+      |		    Validation loss got below 2 (1.88); Mini-batch loss = 1.25
+      |		    Validation Final Accuracy = 44.2% (peak 46.1%); Mini-batch (training) Final Accuracy = 73.3% (peak 90.0%)
+      |		    
+      |
+      +--+180203-1459: Change momnetum factor to 0.9. 
+                       Increase number of epochs to 16.		        
+      		       trainSqueezenet(0.85,6,20,20,30,16,1e-4,0.8,2)  (--> momentum not added here in the arguments)
+      		       Traning finished at epoch 15. 
+      		       Validation loss = 1.3 (minimum 1.2); Mini-batch loss = 0.04
+               	       Validation Final Accuracy = 67.3% (peak 69.2%); Mini-batch (training) Final Accuracy = 100.0%
+      
