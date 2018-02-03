@@ -1,1 +1,2 @@
-Momentum = 0.85
+Change momentum factor to 0.85 / Epochs = 14
+trainSqueezenet(0.85,6,20,20,30,16,1e-4,0.8,2)  (--> momentum not added here in the arguments) 
