@@ -48,11 +48,17 @@ trainSqueezenet(percentageTraining,ValidationFrequency,WeightLearnRateFactor,Bia
          |      	     Validation Final Accuracy = 67.3% (peak 69.2%); Mini-batch (training) Final Accuracy = 100.0%
          |      
          +--+180203-1726: Change momentum factor to 0.95 / Epochs = 14
-            |              trainSqueezenet(0.85,6,20,20,30,16,1e-4,0.8,2)  (--> momentum not added here in the arguments)
+            |              trainSqueezenet(0.85,6,20,20,30,14,1e-4,0.8,2)  (--> momentum not added here in the arguments)
             |              Validation loss = 1.69 (minimum 1.62); Mini-batch loss = 0.09
             |              Validation Final Accuracy = 59.6% (peak 65.4%); Mini-batch (training) Final Accuracy = 96.7% (peak 100%)
             |
             +--+180203-1926: Change momentum factor to 0.85 / Epochs = 14
-                             trainSqueezenet(0.85,6,20,20,30,16,1e-4,0.8,2)  (--> momentum not added here in the arguments) 
-                             Validation loss = 1.05 (minimum 1.05); Mini-batch loss = 0.11 (minimum 0.09)
-                             Validation Final Accuracy = 73.1% (peak 73.1%); Mini-batch (training) Final Accuracy = 96.7% (peak 100%)
+               |              trainSqueezenet(0.85,6,20,20,30,14,1e-4,0.8,2)  (--> momentum not added here in the arguments) 
+               |              Validation loss = 1.05 (minimum 1.05); Mini-batch loss = 0.11 (minimum 0.09)
+               |              Validation Final Accuracy = 73.1% (peak 73.1%); Mini-batch (training) Final Accuracy = 96.7% (peak 100%)
+               |
+               +--+180204-1755: Change batch size to 50 / change LearnRateDropFactor to 0.9
+                                trainSqueezenet(0.85,6,20,20,50,16,1e-4,0.9,2) 
+                                Validation loss = 1.22 (minimum 1.22); Mini-batch loss = 0.18 (minimum 0.13)
+                                Validation Final Accuracy = 65.4% (peak 65.4%); Mini-batch (training) Final Accuracy = 98.0% (peak 100%)
+               
