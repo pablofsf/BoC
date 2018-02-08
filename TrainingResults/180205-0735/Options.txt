@@ -1,0 +1,2 @@
+180205-0735: change LearnRateDropFactor to 1.0 (no drop)
+trainSqueezenet(0.85,6,20,20,30,16,1e-4,1,2)
