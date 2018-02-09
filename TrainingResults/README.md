@@ -1,4 +1,15 @@
-trainSqueezenet(percentageTraining,ValidationFrequency,WeightLearnRateFactor,BiasLearnRateFactor,MiniBatchSize,MaxEpochs,InitialLearnRate,LearnRateDropFactor,LearnRateDropPeriod)
+trainSqueezenet(
+	percentageTraining,
+	ValidationFrequency,
+	WeightLearnRateFactor,
+	BiasLearnRateFactor,
+	MiniBatchSize,
+	MaxEpochs,
+	InitialLearnRate,
+	LearnRateDropFactor,
+	LearnRateDropPeriod,
+	Momentum,//Not present in the first trainings
+	L2Regularization)//Not present in the first trainings
 
 +180131-1158: Basic training. 70/30 Validation/Training.
 |	      Initial learn rate 1e-4, slowly decreased. Batch size 15. Learn rates for conv10 20.
@@ -60,9 +71,34 @@ trainSqueezenet(percentageTraining,ValidationFrequency,WeightLearnRateFactor,Bia
                |              trainSqueezenet(0.85,6,20,20,30,14,1e-4,0.8,2)  (--> momentum not added here in the arguments) 
                |              Validation loss = 1.05 (minimum 1.05); Mini-batch loss = 0.11 (minimum 0.09)
                |              Validation Final Accuracy = 73.1% (peak 73.1%); Mini-batch (training) Final Accuracy = 96.7% (peak 100%)
-               |
+               |	
                +--+180204-1755: Change batch size to 50 / change LearnRateDropFactor to 0.9
-                                trainSqueezenet(0.85,6,20,20,50,16,1e-4,0.9,2) 
-                                Validation loss = 1.22 (minimum 1.22); Mini-batch loss = 0.18 (minimum 0.13)
-                                Validation Final Accuracy = 65.4% (peak 65.4%); Mini-batch (training) Final Accuracy = 98.0% (peak 100%)
-               
+               |                 trainSqueezenet(0.85,6,20,20,50,16,1e-4,0.9,2) 
+               |                 Validation loss = 1.22 (minimum 1.22); Mini-batch loss = 0.18 (minimum 0.13)
+               |                 Validation Final Accuracy = 65.4% (peak 65.4%); Mini-batch (training) Final Accuracy = 98.0% (peak 100%)
+               |
+			   +--+180209-1035: Included momentum to 0.9 / More images and batch size to 64
+				  |				trainSqueezenet(0.85,6,20,20,64,16,1.156e-4,0.8,4,0.9);
+			      |				Validation loss minimum 1.20; Mini-batch loss = 0.39
+			      |				Validation Final Accuracy = 60.77%
+			      |
+			      +--+180209-1229: Increased InitialLearnRate to 3-e4. Clearly faster and better
+				  |	 |   			trainSqueezenet(0.85,6,20,20,64,16,3e-4,0.8,4,0.9);
+				  |	 |	    		Validation loss minimum 1.09; Mini-batch loss minimum = 0.18
+				  |	 |		    	Validation maximum accuracy = 70.72%
+				  |	 |
+				  |  +--+180209-1715: Added L2Regularization: 0.1. A bit less irregular
+				  |  |					trainSqueezenet(0.85,6,20,20,64,16,3e-4,0.8,4,0.9,0.1);
+				  |  |					Validation loss minimum 1.20; Mini-batch loss minimum = 0.16
+				  |  |					Validation maximum accuracy = 65%
+				  |  |
+				  |  +--+180209-1924: Modified L2Regularization to 1. Too high. Useless
+				  |  |					trainSqueezenet(0.85,6,20,20,64,16,3e-4,0.8,4,0.9,1);
+				  |  |
+				  |  +--+180209-2021: Modified L2Regularization to 0.01. 
+				  |  					trainSqueezenet(0.85,6,20,20,64,16,3e-4,0.8,4,0.9,0.01);
+				  |						Validation loss minimum 1.23; Mini-batch loss minimum
+				  |  					Validation maximum accuracy = 63%; Regular accuracy reached 100%
+				  |  
+				  +--+180209-1414: Increased momentum to 0.95. Similar behaviour around 60% but a bit less irregular
+								   trainSqueezenet(0.85,6,20,20,64,16,1.156e-4,0.8,4,0.95);
