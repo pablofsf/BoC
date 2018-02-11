@@ -78,7 +78,7 @@ trainSqueezenet(
                |                 Validation Final Accuracy = 65.4% (peak 65.4%); Mini-batch (training) Final Accuracy = 98.0% (peak 100%)
                |
 			   +--+180209-1035: Included momentum to 0.9 / More images and batch size to 64
-				  |				trainSqueezenet(0.85,6,20,20,64,16,1.156e-4,0.8,4,0.9);
+			      |				trainSqueezenet(0.85,6,20,20,64,16,1.156e-4,0.8,4,0.9);
 			      |				Validation loss minimum 1.20; Mini-batch loss = 0.39
 			      |				Validation Final Accuracy = 60.77%
 			      |
@@ -102,3 +102,7 @@ trainSqueezenet(
 				  |  
 				  +--+180209-1414: Increased momentum to 0.95. Similar behaviour around 60% but a bit less irregular
 								   trainSqueezenet(0.85,6,20,20,64,16,1.156e-4,0.8,4,0.95);
+		
+		+--+180211-1307: trainSqueezenet(0.85,6,20,20,64,16,6e-4,0.85,2,0.9,n/a);
+				 Validation loss minimum 1.29; Mini-batch loss minimum = 0.06	
+				 Validation Final Accuracy = 69.8% (peak 72%); Mini-batch (training) Final Accuracy = 100%
