@@ -96,10 +96,14 @@ trainSqueezenet(
 				  |  |					trainSqueezenet(0.85,6,20,20,64,16,3e-4,0.8,4,0.9,1);
 				  |  |
 				  |  +--+180209-2021: Modified L2Regularization to 0.01. 
-				  |  					trainSqueezenet(0.85,6,20,20,64,16,3e-4,0.8,4,0.9,0.01);
-				  |						Validation loss minimum 1.23; Mini-batch loss minimum
-				  |  					Validation maximum accuracy = 63%; Regular accuracy reached 100%
-				  |  
+				  |  	|				trainSqueezenet(0.85,6,20,20,64,16,3e-4,0.8,4,0.9,0.01);
+				  |		|				Validation loss minimum 1.23; Mini-batch loss minimum
+				  |  	|				Validation maximum accuracy = 63%; Regular accuracy reached 100%
+				  |     |
+				  |     +--+180210-0046: Increased Learning rate to 5e-4. Still improving behaviour
+				  |							trainSqueezenet(0.85,6,20,20,64,16,5e-4,0.4,4,0.9,0.01);
+				  |                         Validation loss minimum = 0.98; Validation maximum accuracy = 73.48%
+				  |      
 				  +--+180209-1414: Increased momentum to 0.95. Similar behaviour around 60% but a bit less irregular
 								   trainSqueezenet(0.85,6,20,20,64,16,1.156e-4,0.8,4,0.95);
 		
