@@ -1,6 +1,6 @@
 % This is a program to test the accuracy of squeezenet
 
-function accuracy = trainSqueezenet(...
+function [trainingImages,validationImages, predictedValidation, predictedTraining] = trainSqueezenet(...
     percentageTraining,...
     ValidationFrequency,...
     WeightLearnRateFactor,...
@@ -65,6 +65,6 @@ trainingPlot = findall(0,'type','figure');
 print(trainingPlot,mat2str(startTime(1:5)),'-dpng');
 close(trainingPlot);
 
-predictedLabels = classify(TrainedNet,validationImages);
-accuracy = mean(predictedLabels == validationImages.Labels)
+predictedTraining = classify(TrainedNet,validationImages);
+predictedValidation = classify(TrainedNet,trainingImages);
 end
