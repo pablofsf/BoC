@@ -1,0 +1,17 @@
+# gnuplot_commands
+set datafile separator ','
+set term x11 0
+plot 'zynqnet_mnist.log.train' using 1:4  title "% top-1 accuracy" with line,\
+     'zynqnet_mnist.log.test' using 1:5 title "% training accuracy" with line
+set term x11 1
+set multiplot
+set size 0.85,0.5
+set origin 0.1,0.0
+plot 'zynqnet_mnist.log.test' using 1:6 lt rgb "green" title "% loss" with line
+
+set size 0.85,0.5
+set origin 0.1,0.5
+plot 'zynqnet_mnist.log.test' using 1:4 lt rgb "red" title "% accuracy top-1" with line ,\
+	 'zynqnet_mnist.log.test' using 1:5 lt rgb "violet" title "% accuracy top-5" with line
+
+unset multiplot

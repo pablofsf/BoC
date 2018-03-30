@@ -1,0 +1,131 @@
+#!/bin/bash
+
+BSDIR=/home/localhost/pa1850co-s/Desktop/BoC/caffe_training
+TRAIN_DIR=$BSDIR/TrainingData
+VAL_DIR=$BSDIR/ValData
+AUT_DIR=$BSDIR/automation
+
+TRAIN_DB=$TRAIN_DIR/train_lmdb
+VAL_DB=$VAL_DIR/val_lmdb
+
+TRAIN_FL=$TRAIN_DIR/train.txt
+VAL_FL=$VAL_DIR/val.txt
+MEAN_FL=$BSDIR/mean.binaryproto
+IMG_SIZE=256
+
+make-lmdb-train() { 
+    if [ -d $TRAIN_DB ]
+    then
+	rm -r $TRAIN_DB
+    fi
+
+    GLOG_logtostderr=1 convert_imageset \
+	--resize_height=$IMG_SIZE --resize_width=$IMG_SIZE --shuffle  $TRAIN_DIR/ $TRAIN_FL $TRAIN_DB
+}
+make-lmdb-val() { 
+    if [ -d $VAL_DB ]
+    then
+	rm -r $VAL_DB
+    fi
+
+    GLOG_logtostderr=1 convert_imageset \
+	--resize_height=$IMG_SIZE --resize_width=$IMG_SIZE --shuffle  $VAL_DIR/ $VAL_FL $VAL_DB
+}
+make-train-txt() {
+    if [ ! -f $TRAIN_FL ]
+    then
+	touch $TRAIN_FL
+    else
+	rm $TRAIN_FL
+	touch $TRAIN_FL
+    fi
+
+    for image in $(ls $TRAIN_DIR | egrep -e "*.jpg" -e "*.png" -e "*.JPG"); do 
+	letter=$(echo $image | cut -d_ -f1)
+	counter=0
+	
+	for alphabet in {A..Z}; do
+	    if [ $letter = $alphabet ]
+	    then
+		letter=$counter
+		break
+	    else
+		counter=$(($counter+1))
+	    fi
+	done
+
+
+	cat <<EOF >> "$TRAIN_FL"
+$image $letter
+EOF
+    done
+}
+make-val-txt() {
+    if [ ! -f $VAL_FL ]
+    then
+	touch $VAL_FL
+    else 
+	rm $VAL_FL
+	touch $VAL_FL
+    fi
+
+    for image in $(ls $VAL_DIR | egrep -e "*.jpg" -e "*.png" -e "*.JPG"); do
+	letter=$(echo $image | cut -d_ -f1)
+	counter=0
+	
+	for alphabet in {A..Z}; do
+	    if [ $letter = $alphabet ]
+	    then
+		letter=$counter
+		break
+	    else
+		counter=$(($counter+1))
+	    fi
+	done
+
+	cat <<EOF >> "$VAL_FL"
+$image $letter
+EOF
+
+    done
+}
+compute_mean() {
+
+    if [ -f $MEAN_FL ]
+    then
+	rm $MEAN_FL
+    else
+	touch $MEAN_FL
+    fi
+
+    compute_image_mean $TRAIN_DB $MEAN_FL
+}
+
+
+case $1 in 
+    -all | "")
+	make-train-txt
+	make-lmdb-train
+	compute-mean
+	make-val-txt
+	make-lmdb-val
+	;;
+    -train)
+	make-train-txt
+	make-lmdb-train
+	compute-mean
+	;;
+    -val)
+	make-val-txt
+	make-lmdb-val
+	;;
+    *)
+	echo "Error: wrong option. Specify none or one of -val, -train, -all"
+	exit 1
+esac
+
+exit 0
+
+
+
+

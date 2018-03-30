@@ -1,0 +1,19 @@
+# gnuplot_commands
+set datafile separator ','
+set multiplot
+set grid
+
+# Loss plot
+set size 0.85,0.5
+set origin 0.1,0.0
+set yrange [0:*]
+plot "/home/localhost/pa1850co-s/tests-caffe/zynqnet-transfer/log/trainedNet.log.train" using 1:5 lt rgb "blue" lw 2  with line title "training loss",     "/home/localhost/pa1850co-s/tests-caffe/zynqnet-transfer/log/trainedNet.log.test" using 1:5  lt rgb "red" lw 2 with line title "test loss"
+
+# Accuracy plot
+set size 0.85,0.5
+set origin 0.1,0.5
+set yrange [0:*]
+plot "/home/localhost/pa1850co-s/tests-caffe/zynqnet-transfer/log/trainedNet.log.train" using 1:4  lt rgb "blue" lw 2 with line title "training accuracy",     "/home/localhost/pa1850co-s/tests-caffe/zynqnet-transfer/log/trainedNet.log.test" using 1:4  lt rgb "red" lw 2 with line title "test accuracy"
+pause 1
+reread
+
