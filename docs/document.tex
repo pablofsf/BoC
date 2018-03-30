@@ -1,0 +1,127 @@
+\documentclass[]{article}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+
+
+%opening
+\title{Report on CNN training}
+\author{Ricardo Núñez Prieto \\
+		Pablo Correa Gómez}
+\makeindex
+
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+	Explanation of progress with neural network
+
+\end{abstract}
+
+
+
+\section{Training in our CPUs}
+\subsection{Before data augmentation}
+We worked on several trainings to get to understand the different parameters and optimize them for our net.
+\newline
+We had 1500 images.
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1\textwidth]{cpu_bef_aug.png}
+		\caption{Example of training before data augmentation}
+	\end{figure}
+
+\newpage
+\subsection{Data augmentation}
+Proceed to data augmentation. As it had been done with a script, we proceeded to do some cleaning. We compared similar images in smaller groups: AOG, MN, UVW and then removed the conflicting images that were out of the frame, a bit blurry, etc.
+	\begin{figure}[h]
+		\centering
+		\begin{subfigure}[b]{0.49\textwidth}
+			\includegraphics[width=\textwidth]{ILRTXZ_before.png}
+			\caption{Before the cleaning}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{ILRTXZ.png}
+		\caption{After the cleaning}
+		\end{subfigure}
+	
+	\caption{ILRTXZ trained together}
+	\end{figure}
+\newline
+After the cleaning procedure we had around 6500 images.
+
+\paragraph*{}
+Then we trained all the images together and again spent some time hand-tuning the learning parameters.
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1\textwidth]{cpu_pablo_all.png}
+		\caption{Nice CPU training on our computers}
+	\end{figure}
+
+
+\section{GPU arrives}
+
+\subsection{Training augmented dataset}
+We had some mistake or something wasn't working that we can still not figure out which made the trainings useless. On Saturday Ricardo tried again and the problem was fixed.
+\newline
+We have done two kind of trainings: 
+\begin{itemize}
+	\item Splitting the dataset randomly and using 85\% of the images for training and 15\% for validation.
+	\item Taking all the dataset for training and validating with some other images that the Neural Network has never seen before.
+\end{itemize}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{gpu_alldataset_partitioned.png}
+		\caption{Random partitioning}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{gpu_ric_y_esposa_validation.png}
+		\caption{Validating never seen images}
+	\end{subfigure}
+	
+	\caption{Trainings with GPU}
+\end{figure}
+
+\subsection{Training original dataset}
+We tried to train the original dataset again to check that the data augmentation has really made a difference.
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{gpu_before_aug.png}
+		\caption{Random partitioning}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{gpu_before_aug_ric__validation.png}
+		\caption{Validating never seen images}
+	\end{subfigure}
+	
+	\caption{Trainings with GPU original dataset}
+\end{figure}
+
+\subsection{Training with googlenet}
+
+As suggested by Liang, we have tried training with a different net to check if the problem identified is due to our topology. After training with googlenet we can conclude that it is not.
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{google_regular_training.png}
+		\caption{Random partitioning}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{google_ric_validation.png}
+		\caption{Validating never seen images}
+	\end{subfigure}
+	
+	\caption{Trainings original dataset}
+\end{figure}
+
+
+
+\end{document}
