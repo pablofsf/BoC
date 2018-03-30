@@ -1,6 +1,7 @@
 VID*
 "Matlab Training"/*.png
 
+*~
 docs/*.aux
 docs/*.idx
 docs/*.log
